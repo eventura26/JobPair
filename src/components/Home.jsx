@@ -1,4 +1,13 @@
+import { useLocation } from "react-router-dom";
 export default function Home(){
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    if (queryParams.get("profile_updated") === "true") {
+        prompt('profile created!')
+    }
+
     return(
         <div className="container">
             <div className="welcome">

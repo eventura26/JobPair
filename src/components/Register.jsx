@@ -19,16 +19,20 @@ export default function Register(){
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await axios.post('http://localhost:8000/api/register/', formValues)
-            console.log(response)
-            navigate('/login')
-        } catch (error){
-            console.error(error)
-        }
-
-    }
+      e.preventDefault();
+      try {
+          const response = await axios.post("http://localhost:8000/api/register/", formValues);
+          console.log(response);
+  
+          // Save the access token to localStorage
+          localStorage.setItem("access", response.data.access);
+  
+          const { id } = response.data;
+          navigate("/select-type", { state: { userId: id } });
+      } catch (error) {
+          console.error(error);
+      }
+  };
 
     return(
         <div>
