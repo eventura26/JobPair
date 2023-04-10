@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import axios from "axios"
 
 export default function Login(){
     let navigate = useNavigate()
-    const [formValues, setFormValues] = useState({username: "", password: ""})
+    const [formValues, setFormValues] = useState({
+        username: "",
+        password: ""})
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +17,7 @@ export default function Login(){
       
     return(
         <div>
-            <form className="login-form">
+            <form className="login">
                 username: <input type="text" />
                 password: <input type="text"/>
                 <input type ="submit" value="log in!" />

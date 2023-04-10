@@ -1,0 +1,31 @@
+@mixin flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar {
+    @include flex();
+    padding: 10px;
+    background-color: $bgcolor;
+    border-bottom: 1px solid #e8d4d4;
+    .title {
+      margin: 0;
+      margin-left:12px;
+      font-family: 'Lobster', cursive;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      button {
+        background-color: transparent;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: white;
+        }
+      }
+    }
+  }
+  
