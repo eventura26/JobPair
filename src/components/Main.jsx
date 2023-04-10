@@ -8,13 +8,7 @@ import Nav from './Nav'
 export default function Main() {
   return (
     <div>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+            <h1>main</h1>
     </div>
   )
 }

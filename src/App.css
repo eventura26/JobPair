@@ -1,3 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+*{
+  background-color: #fee8d3;
+  font-family: 'Lato', sans-serif;
+}
+
+.title{
+  font-family: 'Lobster', cursive;
+}
+
 .App {
   text-align: center;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fee8d3;
+  border-bottom: 1px solid #e8d4d4;
+}
+
+.title {
+  margin: 0;
+  margin-left:12px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links button {
+  background-color: transparent;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.welcome {
+  width: 25%;
+  position: absolute;
+  left: calc(30% - 12.5%);
+  top: calc(40% - 50px);
+  text-align: center;
+}
+
+.home-imgs{
+  position: absolute;
+  right: calc(30% - 12.5%);
+  top: calc(30% - 50px);
+
+}
+.home-imgs img{
+  height: 30rem;
 }

@@ -15,9 +15,9 @@ export default function Login(){
     return(
         <div>
             <form className="login-form">
-                <input type="text" />
-                <input type="text"/>
-                <input type ="submit" />
+                username: <input type="text" />
+                password: <input type="text"/>
+                <input type ="submit" value="log in!" />
             </form>
         </div>
     )
