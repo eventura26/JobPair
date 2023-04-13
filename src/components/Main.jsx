@@ -8,12 +8,13 @@ import Register from './Register';
 import RegisterRecruiter from './RegisterRecruiter';
 import RegisterJobSeeker from './RegisterJobSeeker';
 
-export default function Main() {
+export default function Main(props) {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login   setUser={props.setUser}
+  toggleAuthenticated={props.toggleAuthenticated}/>} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/select-type" element={<UserTypeSelection />} />

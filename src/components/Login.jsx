@@ -3,7 +3,7 @@ import { SignInUser } from "../services/Auth";
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
-export default function Login(){
+export default function Login(props){
 
     let navigate = useNavigate()
     const [formValues, setFormValues] = useState({
@@ -11,20 +11,19 @@ export default function Login(){
         password: ""})
     
     const handleChange = (e) => {
-        e.preventDefault()
         setFormValues({...formValues, [e.target.name]: e.target.value})
         console.log(formValues)
     }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = await SignInUser(formValues);
-    setFormValues({ username: "", password: "" });
-    // setUser(payload);
-    // toggleAuthenticated(true);
-    navigate("/LoggedHome");
-    console.log("logged in!");
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const payload = await SignInUser(formValues);
+        setFormValues({ username: "", password: "" });
+        props.setUser(payload);
+        props.toggleAuthenticated(true);
+        navigate("/");
+        console.log("logged in!");
+    };
 
     return(
         <div>
