@@ -1,27 +1,25 @@
 import './styles/style.css'
-import { Route, Routes } from 'react-router-dom'
-import Login from './components/Login';
-import Register from './components/Register';
-import Home from './components/Home'
-import About from './components/About'
+import Main from './components/Main';
 import Nav from './components/Nav'
-import UserTypeSelection from './components/UserTypeSelection';
-import RecruiterForm from './components/RecruiterForm';
-import JobSeekerForm from './components/JobSeekerForm';
+// import { Route, Routes } from 'react-router-dom'
+// import Login from './components/Login';
+// import Home from './components/Home'
+// import About from './components/About'
+// import Nav from './components/Nav'
+// import UserTypeSelection from './components/UserTypeSelection';
+// import Register from './components/Register';
+// import RegisterRecruiter from './components/RegisterRecruiter';
+// import RegisterJobSeeker from './components/RegisterJobSeeker';
 
 function App() {
   return (
     <div className="App">
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/select-type" element={<UserTypeSelection />} />
-        <Route path="/r-form" element={<RecruiterForm />} />
-        <Route path="/s-form" element={<JobSeekerForm />} />
-      </Routes>
+            <header className="App-header">
+          <Nav />
+        </header>
+        <main>
+          <Main />
+        </main>
     </div>
   );
 }

@@ -2,12 +2,17 @@ import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios"
 
-export default function RecruiterForm(){
+export default function RegisterRecruiter(){
     let navigate = useNavigate()
     const location = useLocation();
-    const userId = location.state.userId;
     const [user, setUser] = useState(null)
     const [formValues, setFormValues] = useState({
+        username:"",
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+        confirm_password: "",
         location: "",
         bio: "",
         photo: "",
@@ -49,20 +54,6 @@ export default function RecruiterForm(){
 
     ]
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-          const token = localStorage.getItem("authToken");
-          const response = await axios.get(`http://localhost:8000/api/users/${userId}`, {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          });
-          console.log(response.data);
-          setUser(response.data);
-        };
-        fetchUserData();
-      }, [userId]);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormValues((prevState) => ({ ...prevState, [name]: value }));
@@ -90,6 +81,18 @@ export default function RecruiterForm(){
     return(
         <div>
             <form className="recruiter-profile" onSubmit={handleSubmit}>
+                <label htmlFor="username">username</label>
+                <input onChange={handleChange} name="username" type="text" value={formValues.username} required/>
+                <label htmlFor="email">email</label>
+                <input onChange={handleChange} name="email" type="email" placeholder="example@example.com" value={formValues.email} required />
+                <label htmlFor="firstName">first name</label>
+                <input onChange={handleChange} name="first_name" type="text" value={formValues.first_name} required /> 
+                <label htmlFor="lastName">last name</label>
+                <input onChange={handleChange} name="last_name" type="text" value={formValues.last_name} required />                        
+                <label htmlFor="password">password</label>
+                <input onChange={handleChange} type="password" name="password" value={formValues.password} required /> 
+                <label htmlFor="confirmPassword">confirm password</label>
+                <input onChange={handleChange} type="password" name="confirm_password" value={formValues.confirm_password} required />
                 <label htmlFor="location">location</label>
                 <input onChange={handleChange} name="location" type="text" value={formValues.location} required/>
                 <label htmlFor="bio">about me</label>
@@ -114,7 +117,7 @@ export default function RecruiterForm(){
                 <label htmlFor="desired_role">looking someone who is a:</label>
                 <input onChange={handleChange} name="desired_role" type="text" value={formValues.desired_role} required/>
                 <label htmlFor="desired_skills">what skills?</label>
-                <input onChange={handleChange} name="skills" type="text" value={formValues.skills} required/>
+                <input onChange={handleChange} name="desired_skills" type="text" value={formValues.desired_skills} required/>
                 <label htmlFor="desired_experience_years">how many years of experience are you looking for</label>
                 <input onChange={handleChange} name="desired_experience_years" type="text" value={formValues.desired_experience_years} required/>
                 <label htmlFor="salary_offered">whats the job pay?</label>

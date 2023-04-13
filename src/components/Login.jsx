@@ -1,11 +1,13 @@
 import { useState } from "react"
+import { SignInUser } from "../services/Auth";
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
 export default function Login(){
+
     let navigate = useNavigate()
     const [formValues, setFormValues] = useState({
-        username: "",
+        email: "",
         password: ""})
     
     const handleChange = (e) => {
@@ -14,23 +16,21 @@ export default function Login(){
         console.log(formValues)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try{
-            const response = await axios.post('http://localhost:8000/api/login/', formValues)
-            console.log(response);
-            navigate('/')
-        } catch (error){
-            console.log(error)
-        }
-
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = await SignInUser(formValues);
+    setFormValues({ username: "", password: "" });
+    // setUser(payload);
+    // toggleAuthenticated(true);
+    navigate("/LoggedHome");
+    console.log("logged in!");
+  };
 
     return(
         <div>
             <form className="login" onSubmit={handleSubmit}>
-                <label htmlFor="username">username</label>
-                <input onChange={handleChange} name="username" type="text" value={formValues.username} />
+                <label htmlFor="username">email</label>
+                <input onChange={handleChange} name="email" type="text" value={formValues.email} />
                 <label htmlFor="password">password</label>
                 <input onChange={handleChange} name="password" type="password" value={formValues.password}/>
                 <input type ="submit" value="log in!" />

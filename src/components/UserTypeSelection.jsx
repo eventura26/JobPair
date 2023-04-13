@@ -1,12 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom"
 
 export default function UserTypeSelection(){
-    const location = useLocation()
     const navigate = useNavigate()
-    const userId = location.state.userId
 
     const handleRoleSelection = (role) => {
-        navigate(`/${role}-form`, {state: { userId }})
+        navigate(`/register/${role}-form`,)
     }
 
     return(

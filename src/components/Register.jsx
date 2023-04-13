@@ -1,13 +1,14 @@
 import { useState } from "react"
+import { RegisterUser } from "../services/Auth"
 import { useNavigate, Link } from "react-router-dom"
-import axios from "axios"
+
 export default function Register(){
     let navigate = useNavigate()
     const [formValues, setFormValues] = useState({
-        username:"",
-        email: "",
         first_name: "",
         last_name: "",
+        location:"",
+        email: "",
         password: "",
         confirm_password: ""
     })
@@ -20,77 +21,94 @@ export default function Register(){
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      try {
-          const response = await axios.post("http://localhost:8000/api/register/", formValues);
-          console.log(response);
-  
-          // Save the access token to localStorage
-          localStorage.setItem("access", response.data.access);
-  
-          const { id } = response.data;
-          navigate("/select-type", { state: { userId: id } });
-      } catch (error) {
-          console.error(error);
-      }
-  };
+      await RegisterUser({
+        first_name: formValues.first_name,
+        last_name: formValues.last_name,
+        location: formValues.location,
+        email: formValues.email,
+        password: formValues.password,
+        confirm_password: formValues.confirm_password,
+      });
+      setFormValues({
+        first_name: "",
+        last_name: "",
+        location:"",
+        email: "",
+        password: "",
+        confirm_password: ""
+      });
+      navigate("/login");
+      
+    };
 
     return(
         <div>
             <form className="register" onSubmit={handleSubmit}>
-                <label htmlFor="username">username</label>
-               <input onChange={handleChange} name="username" type="text" value={formValues.username} required/>
-            <label htmlFor="email">email</label>
-            <input
+              <label htmlFor="firstName">first name</label>
+              <input
+              onChange={handleChange}
+              name="first_name"
+              type="text"
+              value={formValues.first_name}
+              required
+              /> 
+              <label htmlFor="lastName">last name</label>
+              <input
+              onChange={handleChange}
+              name="last_name"
+              type="text"
+              value={formValues.last_name}
+              required
+              />
+              <input
+              onChange={handleChange}
+              name="location"
+              type="location"
+              value={formValues.location}
+              required
+              />              
+              <input
               onChange={handleChange}
               name="email"
               type="email"
               placeholder="example@example.com"
               value={formValues.email}
               required
-            />
-            <label htmlFor="firstName">first name</label>
-            <input
-              onChange={handleChange}
-              name="first_name"
-              type="text"
-              value={formValues.first_name}
-              required
-            /> 
-            <label htmlFor="lastName">last name</label>
-            <input
-              onChange={handleChange}
-              name="last_name"
-              type="text"
-              value={formValues.last_name}
-              required
-            />                        
-            <label htmlFor="password">password</label>
-            <input
+              />          
+              <label htmlFor="password">password</label>
+              <input
               onChange={handleChange}
               type="password"
               name="password"
               value={formValues.password}
               required
-            /> 
-            <label htmlFor="confirmPassword">confirm password</label>
-            <input
+              /> 
+              <label htmlFor="confirmPassword">confirm password</label>
+              <input
               onChange={handleChange}
               type="password"
               name="confirm_password"
               value={formValues.confirm_password}
               required
-            />
-          <button
-            disabled={
-              !formValues.email ||
-              !formValues.username ||
-              (!formValues.password &&
-                formValues.confirm_password === formValues.password)
-            }
-          >
-            Register
-          </button>
+              />
+            <button
+              disabled={
+                !formValues.email ||
+                !formValues.first_name ||
+                !formValues.last_name ||
+                (!formValues.password && formValues.confirm_password === formValues.password)
+                
+              }
+            >
+             Register
+            </button>
         </form>
+        <div>
+          <p>Already have an account?</p>{" "}
+          <Link to="/login">
+            <button className="loginreg">Login</button>
+          </Link>
+        </div>
         </div>
     )
 }
