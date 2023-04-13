@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { SignInUser } from "../services/Auth";
-import { useNavigate, Link } from "react-router-dom"
-import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function Login(props){
 
@@ -18,10 +17,10 @@ export default function Login(props){
     const handleSubmit = async (e) => {
         e.preventDefault();
         const payload = await SignInUser(formValues);
-        setFormValues({ username: "", password: "" });
+        setFormValues({ email: "", password: "" });
         props.setUser(payload);
         props.toggleAuthenticated(true);
-        navigate("/");
+        navigate(`/select-type`);
         console.log("logged in!");
     };
 

@@ -1,7 +1,6 @@
 import './styles/style.css'
 import Main from './components/Main';
 import Nav from './components/Nav'
-import Login from './components/Login';
 import { useState, useEffect } from "react";
 import { CheckSession } from "./services/Auth";
 
@@ -40,7 +39,9 @@ function App() {
             handleLogOut={handleLogOut} />
         </header>
         <main>
-          <Main   
+          <Main  
+            authenticated={authenticated}
+            user={user}
             setUser={setUser} 
             toggleAuthenticated={toggleAuthenticated} />
         </main>

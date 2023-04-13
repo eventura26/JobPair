@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { UpdateJobSeekerProfile } from "../services/Profiles";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function RegisterJobSeeker(props) {
+export default function RegisterJobSeeker(user) {
   let navigate = useNavigate();
+  const { id } = useParams()
+  console.log(id)
   const [formValues, setFormValues] = useState({
-    user_id: "",
+    user_id: id,
     about: "",
     photo: "",
     currently_employed: "",
@@ -54,7 +57,7 @@ export default function RegisterJobSeeker(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await UpdateJobSeekerProfile({
-      user_id: props.user_id,
+      user_id: id,
       about: formValues.about,
       photo: formValues.photo,
       currently_employed: formValues.currently_employed,

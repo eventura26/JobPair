@@ -5,7 +5,7 @@ export default function Nav({ authenticated, user, handleLogOut }){
         console.log(user)
       authenticatedOptions = (
         <nav>
-          <h3>Welcome {user.first_name}!</h3>
+          <h3>Welcome {user.email}!</h3>
           <Link to="/"><button>Home</button></Link>
           <Link to="/"><button>Find A Match</button></Link>
           <Link to="/"><button>Messages</button></Link>

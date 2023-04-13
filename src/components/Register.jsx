@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { RegisterUser } from "../services/Auth"
+import { RegisterUser, SignInUser } from "../services/Auth"
 import { useNavigate, Link } from "react-router-dom"
 
-export default function Register(){
+export default function Register(props){
     let navigate = useNavigate()
     const [formValues, setFormValues] = useState({
         first_name: "",
@@ -29,6 +29,15 @@ export default function Register(){
         password: formValues.password,
         confirm_password: formValues.confirm_password,
       });
+    
+      // Sign in the user after successful registration
+      const payload = await SignInUser({
+        email: formValues.email,
+        password: formValues.password,
+      });
+      props.setUser(payload);
+      props.toggleAuthenticated(true);
+    
       setFormValues({
         first_name: "",
         last_name: "",
@@ -37,9 +46,9 @@ export default function Register(){
         password: "",
         confirm_password: ""
       });
-      navigate("/login");
-      
+      navigate("/select-type");   
     };
+    
 
     return(
         <div>
