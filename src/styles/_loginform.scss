@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid black;
+    //   background-color: $formbgcolor;
+      width: 300px;
+      height: 200px;
+      margin: 50px auto 250px;
+      padding-top: 24px;
+  
+      label {
+        display: block;
+        // background-color: $formbgcolor;
+      }
+  
+      input {
+        display: block;
+        margin-bottom: 10px;
+        background-color: $formbgcolor;
+    }
+      
+    //   h5,a {
+    //     background-color: $formbgcolor;
+    //   }
+    }
+  }
+  

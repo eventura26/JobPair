@@ -1,0 +1,56 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .register {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid black;
+    //   background-color: $formbgcolor;
+      width: 500px;
+      padding: 24px;
+      
+      .row1, .row2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        width: 100%;
+        
+        label {
+          display: block;
+          width: 45%;
+          margin-bottom: 8px;
+        //   background-color: $formbgcolor;
+        }
+        
+        input {
+          width: 45%;
+          display: block;
+          margin-bottom: 8px;
+        }
+      }
+      
+      button {
+        margin-top: 16px;
+        align-self: flex-end;
+      }
+    }
+    
+    .loginreg {
+    //   background-color: $buttoncolor;
+    //   color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      margin-top: 16px;
+      
+      &:hover {
+        cursor: pointer;
+        // background-color: darken($buttoncolor, 10%);
+      }
+    }
+  }
+  

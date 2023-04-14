@@ -2,7 +2,12 @@ import Axios from "axios";
 
 export const BASE_URL = "http://localhost:3001/api";
 
-const Client = Axios.create({ baseURL: BASE_URL });
+const Client = Axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 Client.interceptors.request.use(
   (config) => {

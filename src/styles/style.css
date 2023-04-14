@@ -27,6 +27,121 @@
   background-color: white;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  width: 300px;
+  height: 200px;
+  margin: 50px auto 250px;
+  padding-top: 24px;
+}
+.container .login-form label {
+  display: block;
+}
+.container .login-form input {
+  display: block;
+  margin-bottom: 10px;
+  background-color: #F8F2F2;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-container .register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  width: 500px;
+  padding: 24px;
+}
+.register-container .register .row1, .register-container .register .row2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.register-container .register .row1 label, .register-container .register .row2 label {
+  display: block;
+  width: 45%;
+  margin-bottom: 8px;
+}
+.register-container .register .row1 input, .register-container .register .row2 input {
+  width: 45%;
+  display: block;
+  margin-bottom: 8px;
+}
+.register-container .register button {
+  margin-top: 16px;
+  align-self: flex-end;
+}
+.register-container .loginreg {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.register-container .loginreg:hover {
+  cursor: pointer;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-form form label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.profile-form form label input,
+.profile-form form label select {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.profile-form form label select {
+  width: 100%;
+}
+.profile-form form input[type=submit] {
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0077cc;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.profile-form form input[type=submit]:hover {
+  background-color: #006bb3;
+}
+.profile-form form input[type=submit]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 * {
   background-color: #fee8d3;
   font-family: "Lato", sans-serif;
