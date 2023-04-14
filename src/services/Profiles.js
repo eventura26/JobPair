@@ -45,9 +45,9 @@ export const GetRecruiterProfile = async (user_id) => {
   }
 };
 
-export const GetJobSeekerProfile = async () => {
+export const GetJobSeekerProfile = async (user_id) => {
   try {
-    const res = await Client.get("/jobseeker/:user_id")
+    const res = await Client.get(`/jobseeker/${user_id}`)
     return res.data
   }catch(error){
     throw error
