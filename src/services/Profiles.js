@@ -9,6 +9,15 @@ export const CreateJobSeekerProfile = async (formValues) => {
   }
 };
 
+export const updateJobSeekerProfile = async (id, formValues) => {
+  try {
+    const res = await Client.put(`/jobseeker/profiles/${id}`, formValues);
+    return res.data.profile;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const CreateRecruiterProfile = async (formValues) => {
   try {
     const res = await Client.post("/recruiter/create", formValues);
@@ -17,6 +26,16 @@ export const CreateRecruiterProfile = async (formValues) => {
     throw error;
   }
 };
+
+export const updateRecruiterProfile = async (id, formValues) => {
+  try {
+    const res = await Client.put(`/recruiter/profiles/${id}`, formValues);
+    return res.data.profile;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export const GetAllRecruiterProfiles = async () => {
   try {

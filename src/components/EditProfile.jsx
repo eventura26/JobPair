@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetUserProfileType } from "../services/Auth"
+import FormEditJobSeeker from "./FormEditJobSeeker";
+import FormEditRecruiter from "./FormEditRecruiter";
 
 
 export default function EditProfile(props) {
@@ -24,21 +26,21 @@ console.log(user_id)
     fetchProfileType();
   }, [user_id]);
 
-  // const renderProfileForm = () => {
-  //   switch (profileType) {
-  //     case "recruiter":
-  //       return <RecruiterProfileForm profile={profile} />;
-  //     case "jobseeker":
-  //       return <JobSeekerProfileForm profile={profile} />;
-  //     default:
-  //       return <p>Loading...</p>;
-  //   }
-  // };
+  const renderProfileForm = () => {
+    switch (profileType) {
+      case "recruiter":
+        return <FormEditRecruiter profile={profile} />;
+      case "jobseeker":
+        return <FormEditJobSeeker profile={profile} />;
+      default:
+        return <p>Loading...</p>;
+    }
+  };
 
   return (
     <div>
       <h1>Edit Profile</h1>
-      {/* {renderProfileForm()} */}
+      {renderProfileForm()}
     </div>
   );
 }
