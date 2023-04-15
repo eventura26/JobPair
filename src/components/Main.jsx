@@ -21,7 +21,7 @@ export default function Main(props) {
         <Route path="/select-type" element={<UserTypeSelection user={props.user} authenticated={props.authenticated}/>}/>
         <Route path="/register/:id/r-form" element={<FormRecruiter setUser={props.setUser} toggleAuthenticated={props.toggleAuthenticated}/>}/>
         <Route path="/register/:id/s-form" element={<FormJobSeeker user={props.user} />}/>
-        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/:user_id/edit-profile" element={<EditProfile />} />
         <Route path="/network" element={<Network />} />
         <Route path="/network/recruiters/:id" element={<ProfileRecruiters />} />
         <Route path="/network/jobseekers/:id" element={<ProfileJobSeekers />} />

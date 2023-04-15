@@ -28,3 +28,14 @@ export const CheckSession = async () => {
     throw error;
   }
 };
+
+export const GetUserProfileType = async(user_id) => {
+  try {
+    const response = await Client.get(`/auth/${user_id}/profile-type`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching profile type:", error);
+    throw new Error("Error fetching profile type");
+  }
+}
+

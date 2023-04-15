@@ -5,12 +5,12 @@ export default function Nav({ authenticated, user, handleLogOut }){
         console.log(user)
       authenticatedOptions = (
         <nav>
-          <h3>Welcome {user.email}!</h3>
+          <h3>Welcome {user.email} {user.id}!</h3>
           <Link to="/"><button>Home</button></Link>
           <Link to="/match"><button>Find A Job Match</button></Link>
           <Link to="/network"><button>Network</button></Link>
           <Link to="/inbox"><button>Messages</button></Link>
-          <Link to="/edit-profile"><button>Edit Profile</button></Link>
+          <Link to={`/${user.id}/edit-profile`}><button>Edit Profile</button></Link>
           <Link to="/about"><button>About</button></Link>
           <Link onClick={handleLogOut} to="/">
             <button>Sign Out</button>

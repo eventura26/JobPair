@@ -1,67 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// EditProfile.js
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { GetUserProfileType } from "../services/Auth"
 
-const EditProfile = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [jobSeekerProfile, setJobSeekerProfile] = useState(null);
-  const [recruiterProfile, setRecruiterProfile] = useState(null);
 
+export default function EditProfile(props) {
+  const [profileType, setProfileType] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const { user_id } = useParams();
+console.log(user_id)
   useEffect(() => {
-    const fetchProfile = async () => {
+    async function fetchProfileType() {
       try {
-        const response = await axios.get('http://localhost:3001/api/profile');
-        const { jobSeekerProfile, recruiterProfile } = response.data;
-        setJobSeekerProfile(jobSeekerProfile);
-        setRecruiterProfile(recruiterProfile);
+        const result = await GetUserProfileType(user_id);
+        setProfileType(result.profileType);
+        setProfile(result.profile);
+        console.log(result)
       } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
+        console.error("Error fetching profile type:", error);
       }
-    };
-
-    fetchProfile();
-  }, []);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!jobSeekerProfile && !recruiterProfile) {
-    return <div>You do not have a profile yet</div>;
-  }
-
-  const profile = jobSeekerProfile || recruiterProfile;
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.put(`/api/profile/${profile.id}/update`, {
-        ...profile,
-        // Update fields here
-      });
-    } catch (error) {
-      console.log(error);
     }
-  };
 
-  if (jobSeekerProfile) {
-    return (
-      <form onSubmit={handleSubmit}>
-        {/* Render job seeker form here */}
-      </form>
-    );
-  }
+    fetchProfileType();
+  }, [user_id]);
 
-  if (recruiterProfile) {
-    return (
-      <form onSubmit={handleSubmit}>
-        {/* Render recruiter form here */}
-      </form>
-    );
-  }
+  // const renderProfileForm = () => {
+  //   switch (profileType) {
+  //     case "recruiter":
+  //       return <RecruiterProfileForm profile={profile} />;
+  //     case "jobseeker":
+  //       return <JobSeekerProfileForm profile={profile} />;
+  //     default:
+  //       return <p>Loading...</p>;
+  //   }
+  // };
 
-  return null;
-};
-
-export default EditProfile;
+  return (
+    <div>
+      <h1>Edit Profile</h1>
+      {/* {renderProfileForm()} */}
+    </div>
+  );
+}
