@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetJobSeekerProfile } from "../services/Profiles";
 
-export default function ProfileRecruiters(props) {
+export default function ProfileJobSeekers(props) {
   const [profile, setProfile] = useState(null);
   const { id } = useParams();
 
@@ -20,11 +20,14 @@ export default function ProfileRecruiters(props) {
       {profile && profile.User ? (
         <>
           <h3>
-            Name: {profile.User.first_name} {profile.User.last_name}
+            {profile.User.first_name} {profile.User.last_name}
           </h3>
-          <p>Company: {profile.company}</p>
+          <img src={profile.User.photo}/>
+          <p>LinkedIn: {profile.linkedin}</p>
           <p>Location: {profile.User.location}</p>
-          <p>Company Bio: {profile.about}</p>
+          <p>Looking for work as a: {profile.seeking_role}</p>
+          <p>My Skill: {profile.skills}</p>
+          <p>A little bit about me: {profile.about}</p>
         </>
       ) : (
         <p>Loading profile...</p>

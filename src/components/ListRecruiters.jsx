@@ -22,6 +22,7 @@ export default function ListRecruiters() {
           <Link to={`/network/recruiters/${profile.User.id}`}>
             <h3>Company: {profile.company}</h3>
             <h3>Name: {profile.User.first_name} {profile.User.last_name}</h3>
+            <img src={profile.photo}/>
             <p>Bio: {profile.company_bio}</p>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateJobSeekerProfile } from "../services/Profiles";
+import { updateJobSeekerProfile, DeleteJobSeekerProfile } from "../services/Profiles";
 import { useNavigate } from "react-router-dom";
 
 export default function FormEditJobSeeker(props) {
@@ -59,6 +59,16 @@ export default function FormEditJobSeeker(props) {
     await updateJobSeekerProfile(props.profile.id, formValues);
     navigate(`/network/jobseekers/${props.profile.user_id}`);
   };
+
+  const DeleteProfile = async () => {
+    try {
+      await DeleteJobSeekerProfile(props.profile.user_id);
+      navigate(`/network/jobseekers`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -159,7 +169,8 @@ export default function FormEditJobSeeker(props) {
         />
         <input type="submit" value="Update Profile" />
       </form>
+      <button onClick={DeleteProfile}>Delete Profile</button>
     </div>
   );
-
+          
 }

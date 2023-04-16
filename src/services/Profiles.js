@@ -72,3 +72,22 @@ export const GetJobSeekerProfile = async (user_id) => {
     throw error
   }
 }
+
+export const DeleteJobSeekerProfile = async (user_id) => {
+  try {
+    const res = await Client.delete(`/jobseeker/${user_id}`)
+    return res.data
+  }catch(error){
+    throw error
+  }
+}
+
+
+export const DeleteRecruiterProfile = async (user_id) => {
+  try {
+    const res = await Client.delete(`/recruiter/${user_id}`)
+    return res.data
+  }catch(error){
+    throw error
+  }
+}
